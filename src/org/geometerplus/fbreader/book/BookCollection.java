@@ -28,6 +28,7 @@ import org.geometerplus.zlibrary.core.image.ZLImage;
 
 import org.geometerplus.zlibrary.text.view.ZLTextPosition;
 
+import org.geometerplus.android.fbreader.api.RationalNumber;
 import org.geometerplus.fbreader.bookmodel.BookReadingException;
 import org.geometerplus.fbreader.formats.*;
 
@@ -670,6 +671,18 @@ public class BookCollection extends AbstractBookCollection {
 
 	public void markHyperlinkAsVisited(Book book, String linkId) {
 		book.markHyperlinkAsVisited(myDatabase, linkId);
+	}
+	
+	@Override
+	public RationalNumber loadPosition(long bookId) {
+		return myDatabase.loadPosition(bookId);
+	}
+
+	@Override
+	public void savePosition(long bookId, RationalNumber progress) {
+		if (bookId != -1) {
+			myDatabase.savePosition(bookId, progress);
+		}
 	}
 
 	private synchronized void initStylesTable() {

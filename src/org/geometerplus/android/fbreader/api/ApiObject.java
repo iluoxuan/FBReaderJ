@@ -20,6 +20,7 @@ public abstract class ApiObject implements Parcelable {
 		int DATE = 4;
 		int LONG = 5;
 		int TEXT_POSITION = 10;
+		int RATIONAL_NUMBER = 11;
 	}
 
 	static class Void extends ApiObject {

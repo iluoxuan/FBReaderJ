@@ -6,6 +6,7 @@ package org.geometerplus.android.fbreader.libraryService;
 
 import java.util.List;
 import org.geometerplus.android.fbreader.api.TextPosition;
+import org.geometerplus.android.fbreader.api.RationalNumber;
 
 interface LibraryInterface {
 	void reset(in List<String> bookDirectories, in boolean force);
@@ -40,6 +41,9 @@ interface LibraryInterface {
 
 	boolean isHyperlinkVisited(in String book, in String linkId);
 	void markHyperlinkAsVisited(in String book, in String linkId);
+	
+	RationalNumber loadPosition(in long bookId);
+	void savePosition(in long bookId, in RationalNumber position);
 
 	boolean saveCover(in String book, in String url);
 

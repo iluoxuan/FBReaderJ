@@ -34,6 +34,7 @@ import org.geometerplus.zlibrary.text.view.ZLTextFixedPosition;
 import org.geometerplus.fbreader.Paths;
 import org.geometerplus.fbreader.book.*;
 
+import org.geometerplus.android.fbreader.api.RationalNumber;
 import org.geometerplus.android.fbreader.api.TextPosition;
 
 public class LibraryService extends Service {
@@ -244,6 +245,20 @@ public class LibraryService extends Service {
 
 		public void markHyperlinkAsVisited(String book, String linkId) {
 			myCollection.markHyperlinkAsVisited(SerializerUtil.deserializeBook(book), linkId);
+		}
+
+		@Override
+		public RationalNumber loadPosition(long bookId) {
+			final RationalNumber position = myCollection.loadPosition(bookId);
+			return position;
+		}
+		
+		@Override
+		public void savePosition(long bookId, RationalNumber progress) {
+			if (progress == null) {
+				return;
+			}
+			myCollection.savePosition(bookId, progress);
 		}
 		
 		@Override

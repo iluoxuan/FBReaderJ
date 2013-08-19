@@ -21,6 +21,7 @@ package org.geometerplus.fbreader.book;
 
 import java.util.List;
 
+import org.geometerplus.android.fbreader.api.RationalNumber;
 import org.geometerplus.zlibrary.core.filesystem.ZLFile;
 
 import org.geometerplus.zlibrary.text.view.ZLTextPosition;
@@ -78,6 +79,9 @@ public interface IBookCollection {
 
 	boolean isHyperlinkVisited(Book book, String linkId);
 	void markHyperlinkAsVisited(Book book, String linkId);
+	
+	RationalNumber loadPosition(long bookId);
+	void savePosition(long bookId, RationalNumber progress);
 
 	boolean saveCover(Book book, String url);
 	

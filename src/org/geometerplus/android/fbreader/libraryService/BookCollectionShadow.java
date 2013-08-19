@@ -33,6 +33,7 @@ import org.geometerplus.zlibrary.text.view.ZLTextPosition;
 import org.geometerplus.fbreader.Paths;
 import org.geometerplus.fbreader.book.*;
 
+import org.geometerplus.android.fbreader.api.RationalNumber;
 import org.geometerplus.android.fbreader.api.TextPosition;
 
 public class BookCollectionShadow extends AbstractBookCollection implements ServiceConnection {
@@ -378,6 +379,30 @@ public class BookCollectionShadow extends AbstractBookCollection implements Serv
 		if (myInterface != null) {
 			try {
 				myInterface.markHyperlinkAsVisited(SerializerUtil.serialize(book), linkId);
+			} catch (RemoteException e) {
+			}
+		}
+	}
+	
+	@Override
+	public synchronized RationalNumber loadPosition(long bookId) {
+		if (myInterface == null) {
+			return null;
+		}
+
+		try {
+			final RationalNumber position = myInterface.loadPosition(bookId);
+			return position;
+		} catch (RemoteException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public synchronized void savePosition(long bookId, RationalNumber progress) {
+		if (progress != null && myInterface != null) {
+			try {
+				myInterface.savePosition(bookId, progress);
 			} catch (RemoteException e) {
 			}
 		}

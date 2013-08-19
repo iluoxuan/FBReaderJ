@@ -38,6 +38,7 @@ import org.geometerplus.zlibrary.text.view.ZLTextFixedPosition;
 
 import org.geometerplus.fbreader.book.*;
 
+import org.geometerplus.android.fbreader.api.RationalNumber;
 import org.geometerplus.android.util.SQLiteUtil;
 
 final class SQLiteBooksDatabase extends BooksDatabase {
