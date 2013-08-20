@@ -19,7 +19,13 @@
 
 package org.geometerplus.fbreader.book;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.*;
+
+import org.geometerplus.zlibrary.core.util.RationalNumber;
 
 public abstract class SerializerUtil {
 	private SerializerUtil() {
@@ -122,5 +128,13 @@ public abstract class SerializerUtil {
 			}
 		}
 		return styles;
+	}
+
+	public static String serialize(RationalNumber position) {
+		return null;
+	}
+
+	public static RationalNumber deserializePosition(String progress) {
+		return null;
 	}
 }

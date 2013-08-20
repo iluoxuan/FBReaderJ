@@ -32,13 +32,13 @@ import org.geometerplus.zlibrary.core.config.ZLConfig;
 import org.geometerplus.zlibrary.core.filesystem.ZLFile;
 import org.geometerplus.zlibrary.core.options.ZLStringOption;
 import org.geometerplus.zlibrary.core.options.ZLIntegerOption;
+import org.geometerplus.zlibrary.core.util.RationalNumber;
 import org.geometerplus.zlibrary.core.util.ZLColor;
 import org.geometerplus.zlibrary.text.view.ZLTextPosition;
 import org.geometerplus.zlibrary.text.view.ZLTextFixedPosition;
 
 import org.geometerplus.fbreader.book.*;
 
-import org.geometerplus.android.fbreader.api.RationalNumber;
 import org.geometerplus.android.util.SQLiteUtil;
 
 final class SQLiteBooksDatabase extends BooksDatabase {

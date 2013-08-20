@@ -27,6 +27,7 @@ import android.os.IBinder;
 import android.os.FileObserver;
 
 import org.geometerplus.zlibrary.core.filesystem.ZLFile;
+import org.geometerplus.zlibrary.core.util.RationalNumber;
 
 import org.geometerplus.zlibrary.text.view.ZLTextPosition;
 import org.geometerplus.zlibrary.text.view.ZLTextFixedPosition;
@@ -34,7 +35,6 @@ import org.geometerplus.zlibrary.text.view.ZLTextFixedPosition;
 import org.geometerplus.fbreader.Paths;
 import org.geometerplus.fbreader.book.*;
 
-import org.geometerplus.android.fbreader.api.RationalNumber;
 import org.geometerplus.android.fbreader.api.TextPosition;
 
 public class LibraryService extends Service {
@@ -248,17 +248,13 @@ public class LibraryService extends Service {
 		}
 
 		@Override
-		public RationalNumber loadPosition(long bookId) {
-			final RationalNumber position = myCollection.loadPosition(bookId);
-			return position;
+		public String loadPosition(long bookId) {
+			return SerializerUtil.serialize(myCollection.loadPosition(bookId));
 		}
 		
 		@Override
-		public void savePosition(long bookId, RationalNumber progress) {
-			if (progress == null) {
-				return;
-			}
-			myCollection.savePosition(bookId, progress);
+		public void savePosition(long bookId, String progress) {
+			myCollection.savePosition(bookId, SerializerUtil.deserializePosition(progress));
 		}
 		
 		@Override

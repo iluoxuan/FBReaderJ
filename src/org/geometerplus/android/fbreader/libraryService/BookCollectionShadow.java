@@ -26,6 +26,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 
 import org.geometerplus.zlibrary.core.filesystem.ZLFile;
+import org.geometerplus.zlibrary.core.util.RationalNumber;
 
 import org.geometerplus.zlibrary.text.view.ZLTextFixedPosition;
 import org.geometerplus.zlibrary.text.view.ZLTextPosition;
@@ -33,7 +34,6 @@ import org.geometerplus.zlibrary.text.view.ZLTextPosition;
 import org.geometerplus.fbreader.Paths;
 import org.geometerplus.fbreader.book.*;
 
-import org.geometerplus.android.fbreader.api.RationalNumber;
 import org.geometerplus.android.fbreader.api.TextPosition;
 
 public class BookCollectionShadow extends AbstractBookCollection implements ServiceConnection {
@@ -391,8 +391,7 @@ public class BookCollectionShadow extends AbstractBookCollection implements Serv
 		}
 
 		try {
-			final RationalNumber position = myInterface.loadPosition(bookId);
-			return position;
+			return SerializerUtil.deserializePosition(myInterface.loadPosition(bookId));
 		} catch (RemoteException e) {
 			return null;
 		}
@@ -402,7 +401,7 @@ public class BookCollectionShadow extends AbstractBookCollection implements Serv
 	public synchronized void savePosition(long bookId, RationalNumber progress) {
 		if (progress != null && myInterface != null) {
 			try {
-				myInterface.savePosition(bookId, progress);
+				myInterface.savePosition(bookId, SerializerUtil.serialize(progress));
 			} catch (RemoteException e) {
 			}
 		}
